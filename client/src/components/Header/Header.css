@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1vh 3vh;
+  border-bottom: 1px solid #ededed;
+}
+.profile-icon {
+  height: 50px;
+  object-fit: contain;
+}
+.header__logo-text {
+  font-size: 30px;
+  font-style: italic;
+}

@@ -1,0 +1,21 @@
+.single-chat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  height: 70px;
+  border-bottom: 1px solid rgb(216, 216, 216);
+}
+
+.chat-deetz {
+  flex: 1; /* Gives priority to this container => pushes next to avatar */
+  padding-left: 25px;
+}
+
+.last-msg {
+  color: rgb(112, 112, 112);
+}
+
+.timestamp {
+  color: rgb(173, 173, 173);
+}
