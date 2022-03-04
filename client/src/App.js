@@ -7,6 +7,7 @@ import "./App.less";
 import Header from "./components/Header/Header";
 import CardList from "./components/CardList/CardList";
 import ChatList from "./components/ChatList/ChatList";
+import SwipeButtons from "./components/SwipeButtons/SwipeButtons";
 
 //Creating Context
 export const mainContext = React.createContext(null);
@@ -36,6 +37,7 @@ function App() {
                 <>
                   <Header />
                   <CardList />
+                  <SwipeButtons />
                 </>
               }
             />
