@@ -8,6 +8,7 @@ import Header from "./components/Header/Header";
 import CardList from "./components/CardList/CardList";
 import ChatList from "./components/ChatList/ChatList";
 import SwipeButtons from "./components/SwipeButtons/SwipeButtons";
+import { ParentForm } from "./components/Form/Create_Acc_Parent/ParentForm";
 
 //Creating Context
 export const mainContext = React.createContext(null);
@@ -20,6 +21,14 @@ function App() {
       <mainContext.Provider value={{ users, setUsers }}>
         <Router>
           <Routes>
+            {/* Chat with particular user */}
+            <Route path='/chat/:person'
+            element= {
+              <>
+              <Header backButton='/chat' />
+              <h1>INDIVIDUAL CHAT!</h1>
+              </>
+            }/>
             {/* Chat-page Route */}
             <Route
               path="/chat"
@@ -30,6 +39,7 @@ function App() {
                 </>
               }
             />
+            <Route path='/signup' element={<ParentForm />}></Route>
             {/* Home '/' Route */}
             <Route
               path="/"

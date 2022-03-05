@@ -1,0 +1,27 @@
+.main-form-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  background-color: rgb(240, 240, 240);
+  width: 600px;
+  height: 100vh;
+  row-gap: 10px;
+}
+
+.progress-tracker {
+  margin: 0 auto;
+}
+
+.progress-bar {
+  height: 30px;
+  width: 300px;
+}
+
+.page-tracker {
+  text-align: center;
+}
+
+.content {
+  margin: 0 auto;
+}

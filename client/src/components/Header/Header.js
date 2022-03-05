@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 //CSS
 import "./Header.css";
 //Material UI Icons and Buttons
@@ -9,15 +9,15 @@ import { Icon, IconButton } from "@mui/material";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 
 function Header({ backButton }) {
-  const navHistory = useNavigate();
+  const navigate = useNavigate();
   return (
     <div className="header">
       {/* If backButton is passed as prop, link to homepage */}
       {backButton ? (
-        <Link to="/">
+        // <Link to="/">
           <IconButton
             onClick={() => {
-              navHistory.replace(backButton); //this doesnt work.
+              <Navigate to={backButton} />  //this doesnt work.
               //look up useNav. docs
             }}
           >
@@ -26,7 +26,7 @@ function Header({ backButton }) {
               className="arrow-back-btn"
             ></ArrowLeftIcon>
           </IconButton>
-        </Link>
+        // </Link>
       ) : (
         <IconButton>
           <PersonIcon fontSize="large" className="profile-icon" />
