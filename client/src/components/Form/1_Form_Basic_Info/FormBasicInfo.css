@@ -27,15 +27,42 @@
   border-color: rgb(211, 24, 55);
 }
 
+@keyframes fade-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes fade-in-top {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .top-text {
   margin-bottom: 20px;
   font-size: 30px;
   text-align: center;
+  opacity: 0;
+  animation: fade-in-right ease 0.4s forwards;
+  /* animation: showup 7s infinite; */
 }
 
 .form > p {
   margin: 0 auto;
   font-size: 18px;
+  opacity: 0;
+  animation: fade-in-top ease 0.4s forwards;
+  animation-delay: 1.4s;
 }
 
 .next-btn {
@@ -61,6 +88,7 @@
 ::placeholder {
   padding: 10px;
   margin: 0 auto;
-  color: rgb(97, 97, 97);
+  color: rgb(141, 141, 141);
   font-size: 15px;
+  opacity: 0;
 }

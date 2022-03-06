@@ -6,6 +6,7 @@ import FormBandRoles from '../2_Form_Band_Roles/FormBandRoles';
 import FormGenres from '../3_Form_Genres/FormGenres';
 import WorkWith_Instruments from '../4_Form_Work_With_Instruments/WorkWith_Instruments';
 import FormWorkWithGenres from '../5_Form_Work_With_Genres/FormWorkWithGenres';
+import FormUserProfile from '../6_Form_UsrProf_Media/FormUserProfile';
 import './ParentForm.css';
 
 //Creating Context
@@ -67,7 +68,7 @@ function ParentForm() {
           {page === 3 && <FormGenres />}
           {page === 4 && <WorkWith_Instruments />}
           {page === 5 && <FormWorkWithGenres />}
-          {page === 6 && <Onboarding6 />}
+          {page === 6 && <FormUserProfile />}
           {page === 7 && <Onboarding7 />}
 
           {/* Render Prev Button if page > 1 */}
