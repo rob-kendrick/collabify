@@ -5,15 +5,20 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import Axios from 'axios';
 
+const cloudController = require('../../../services/cloudService');
+
 function FormUserProfile() {
   const context = useContext(formContext);
-
+  const [mediaFileInputState, setMediaFileInputState] = useState('');
   const [previewSource, setPreviewSource] = useState();
+  const [mediaPreviewSrc, setMediaPreviewSrc] = useState();
 
+  //Go prev page function
   function goPrevPage() {
     context.setPage((page) => page - 1);
   }
 
+  //Handle form submit
   function handleSubmit(event) {
     try {
       event.preventDefault();
@@ -26,54 +31,70 @@ function FormUserProfile() {
       );
     }
   }
-
-  //api service func
-  function uploadImage(imgBase64) {
+  //controller function for uploading user media
+  async function uploadUsrMedia(imgBase64) {
     console.log(imgBase64);
     try {
-      console.log('try catch firing!');
-      return fetch('http://localhost:4000/cloudapi/upload', {
+      console.log('UploadusrMedia firing!');
+      setMediaFileInputState('');
+      return await fetch('http://localhost:4000/cloudapi/upload/media', {
         method: 'POST',
         body: JSON.stringify({ imgData: imgBase64 }),
         headers: { 'Content-Type': 'application/json' },
       });
     } catch (err) {
-      console.log('Error uploading file Usr Profile : : : ', err);
+      console.log('Error uploading file Usr media : : : ', err);
     }
   }
 
+  //Function for handling profile picture upload
   function handleFileSubmit(event) {
     console.log('handleSubmitFile firing !');
     event.preventDefault();
     if (!previewSource) return;
-    uploadImage(previewSource);
+    cloudController.uploadImage(previewSource);
   }
 
+  //Func for uploading usr-media picture
+  function submitUserMedia(event) {
+    console.log('submitUserMedia firing!');
+    event.preventDefault();
+    if (!mediaPreviewSrc) return;
+    uploadUsrMedia(mediaPreviewSrc); //////////////////////
+  }
+
+  //Func for handling user selecting profile pic
   function handleInputChange(files) {
     console.log('handleInputChange firing !');
     const file = files[0];
     console.log(file, 'FILE !');
     previewFile(file);
-
-    const formData = new FormData();
-    formData.append('file', files[0]); //selecting 1st file in fileList
-    formData.append('upload_preset', 'ege9jsbo'); //cloudinary preset
-
-    //   Axios.post(
-    //     'https://api.cloudinary.com/v1_1_rkendrick/image/upload',
-    //     formData
-    //   ).then((response) => console.log('respownse!', response));
-    // } catch (err) {
-    //   console.log(' : : : Error uploading profPic to cloudinary : : :', err);
-    // }
   }
 
-  //Function for previewing selected file
+  //func for handling user selecting usr-media file
+  function handleMediaInput(files) {
+    console.log('handleMediaInput firing!');
+    const mediaFile = files[0];
+    console.log(mediaFile, 'MEDIA FILE !');
+    previewMediaFile(mediaFile);
+    setMediaFileInputState(files);
+  }
+
+  //Function for previewing profile pic
   function previewFile(file) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       setPreviewSource(reader.result);
+    };
+  }
+
+  //Function for previewing usr-media pictures
+  function previewMediaFile(file) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setMediaPreviewSrc(reader.result);
     };
   }
 
@@ -99,7 +120,21 @@ function FormUserProfile() {
           Submit file
         </button>
         <h4>Add more user pictures</h4>
-        <input type="file" name="other-prof-pics"></input>
+        <input
+          type="file"
+          name="media-file-1"
+          onChange={(e) => {
+            handleMediaInput(e.target.files);
+          }}
+        ></input>
+        <button
+          type="button"
+          className="submit-file-btn"
+          onClick={submitUserMedia}
+          value={mediaFileInputState}
+        >
+          Submit Media file
+        </button>
         <h4>and write a short bio</h4>
         <input type="text" name="bio"></input>
       </form>

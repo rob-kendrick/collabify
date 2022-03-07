@@ -1,6 +1,7 @@
 'use strict';
 const Express = require('express');
 const morgan = require('morgan');
+const { cloudinary } = require('./utils/cloudinary');
 const router = require('./router');
 const cors = require('cors');
 const PORT = 4000;

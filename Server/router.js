@@ -18,8 +18,15 @@ router.post('/users', userController.createUser);
 //Delete 1 user
 router.delete('/users/:id', userController.deleteUserById);
 
-//CLOUD STUFF
+// CLOUD STUFF
 
+//Post a profile picture to cloundinary
 router.post('/cloudapi/upload', cloudController.uploadProfilePic);
+
+//Post a user media pic to cloudinary
+router.post('/cloudapi/upload/media', cloudController.uploadMediaPic);
+
+//Retrieve all profile picture public_ids from cloudinary
+router.get('/cloudapi/upload', cloudController.getAllProfPics);
 
 module.exports = router;
