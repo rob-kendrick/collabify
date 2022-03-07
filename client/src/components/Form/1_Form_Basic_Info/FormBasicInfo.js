@@ -7,6 +7,8 @@ function FormBasicInfo() {
   //reference the context of parent componnent
   const context = useContext(formContext);
 
+  //TODO:
+  //  Make the handleSubnit function update context state x
   function handleSubmit(event) {
     try {
       event.preventDefault();

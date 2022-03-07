@@ -1,12 +1,15 @@
-import React from "react";
-import { Link, useNavigate, Navigate } from "react-router-dom";
+import React from 'react';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 //CSS
-import "./Header.css";
+import './Header.css';
 //Material UI Icons and Buttons
-import PersonIcon from "@mui/icons-material/Person";
-import ForumIcon from "@mui/icons-material/Forum";
-import { Icon, IconButton } from "@mui/material";
-import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
+import PersonIcon from '@mui/icons-material/Person';
+import ForumIcon from '@mui/icons-material/Forum';
+import { Icon, IconButton } from '@mui/material';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+
+//TODO:
+//  Make the backButtons work
 
 function Header({ backButton }) {
   const navigate = useNavigate();
@@ -15,19 +18,19 @@ function Header({ backButton }) {
       {/* If backButton is passed as prop, link to homepage */}
       {backButton ? (
         // <Link to="/">
-          <IconButton
-            onClick={() => {
-              <Navigate to={backButton} />  //this doesnt work.
-              //look up useNav. docs
-            }}
-          >
-            <ArrowLeftIcon
-              fontSize="large"
-              className="arrow-back-btn"
-            ></ArrowLeftIcon>
-          </IconButton>
-        // </Link>
+        <IconButton
+          onClick={() => {
+            <Navigate to={backButton} />; //this doesnt work atm.
+            //look up useNav. docs
+          }}
+        >
+          <ArrowLeftIcon
+            fontSize="large"
+            className="arrow-back-btn"
+          ></ArrowLeftIcon>
+        </IconButton>
       ) : (
+        // </Link>
         <IconButton>
           <PersonIcon fontSize="large" className="profile-icon" />
         </IconButton>

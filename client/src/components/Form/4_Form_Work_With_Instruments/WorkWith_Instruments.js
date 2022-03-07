@@ -38,7 +38,7 @@ function WorkWith_Instruments() {
       //Go to next page
       context.setPage((page) => page + 1);
     } catch (err) {
-      console.log(' : : : error submitting Band Roles : : : ', err);
+      console.log(' : : : error submitting User desired Roles : : : ', err);
     }
   }
 

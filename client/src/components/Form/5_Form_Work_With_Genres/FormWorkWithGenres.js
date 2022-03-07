@@ -27,10 +27,6 @@ function FormWorkWith() {
     console.log(tempArr, '<< tempArr BandRoles');
   }, [tempArr]);
 
-  function goPrevPage() {
-    context.setPage((page) => page - 1);
-  }
-
   function toggleElement(item) {
     setTempArr((prevArr) => {
       let arrCopy = [...prevArr];
@@ -45,13 +41,17 @@ function FormWorkWith() {
     });
   }
 
+  function goPrevPage() {
+    context.setPage((page) => page - 1);
+  }
+
   function handleSubmit(event) {
     try {
       event.preventDefault();
       //Go to next page
       context.setPage((page) => page + 1);
     } catch (err) {
-      console.log(' : : : error submitting Band Roles : : : ', err);
+      console.log(' : : : error submitting User Desired Genres : : : ', err);
     }
   }
 
