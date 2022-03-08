@@ -1,10 +1,10 @@
-"use strict";
-const mongoose = require("./");
+'use strict';
+const mongoose = require('./');
 const Schema = mongoose.Schema;
 
 //User Schema
 const userSchema = new Schema({
-  //Basic Info
+  //Basic Info + profile pic
   email: {
     type: String,
     required: true,
@@ -21,15 +21,14 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  age: {
+  bday: {
     type: String,
     required: true,
   },
   bio: {
     type: String,
-    required: true,
   },
-  profPic: {
+  profilePic: {
     type: String,
   },
 
@@ -37,32 +36,40 @@ const userSchema = new Schema({
   roles: {
     type: [String],
     enum: [
-      "Producer",
-      "Vocalist",
-      "Drummer",
-      "Percussionist",
-      "Guitarist",
-      "Bassist",
-      "Synth / Keys",
-      "Saxophone",
+      'Producer',
+      'Vocalist',
+      'Drummer',
+      'Percussionist',
+      'Guitarist',
+      'Bassist',
+      'Synth / Keys',
+      'Saxophone',
     ],
   },
   genres: {
     type: [String],
     enum: [
-      "Hip-Hop",
-      "Pop",
-      "RnB",
-      "Blues",
-      "Soul",
-      "Jazz",
-      "Funk",
-      "Rock",
-      "Punk",
-      "House / Techno",
-      "Metal",
-      "Experimental",
+      'Hip-Hop',
+      'Pop',
+      'RnB',
+      'Blues',
+      'Soul',
+      'Jazz',
+      'Funk',
+      'Rock',
+      'Punk',
+      'House / Techno',
+      'Metal',
+      'Experimental',
     ],
+  },
+
+  workWithGenres: {
+    type: [String],
+  },
+
+  workWithRoles: {
+    type: [String],
   },
 
   //User Media
@@ -77,25 +84,15 @@ const userSchema = new Schema({
   matches: {
     type: [String],
   },
-  rejectedBy: {
+  likes: {
     type: [String],
   },
-
-  //Location
-  location: {
-    name: {
-      type: String,
-    },
-    lat: {
-      type: Number,
-    },
-    long: {
-      type: Number,
-    },
+  dislikes: {
+    type: [String],
   },
 });
 
 //Creates Document 'Users' in our DB.
-const UserModel = mongoose.model("User", userSchema);
+const UserModel = mongoose.model('User', userSchema);
 
 module.exports = UserModel;

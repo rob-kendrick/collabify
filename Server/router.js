@@ -18,6 +18,9 @@ router.post('/users', userController.createUser);
 //Delete 1 user
 router.delete('/users/:id', userController.deleteUserById);
 
+//Login user
+router.post('/login', userController.login);
+
 // CLOUD STUFF
 
 //Post a profile picture to cloundinary

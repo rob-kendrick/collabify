@@ -85,10 +85,22 @@
   color: white;
 }
 
-::placeholder {
+.back-login-btn {
+  margin: 30px;
   padding: 10px;
-  margin: 0 auto;
-  color: rgb(141, 141, 141);
-  font-size: 15px;
-  opacity: 0;
+  margin: 15px auto;
+  width: 50%;
+  border-radius: 20px;
+  border: 1px solid black;
+  background-color: rgb(250, 250, 250);
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  transition: 250ms width ease, 250ms;
+}
+
+.back-login-btn:hover {
+  width: 53%;
+  cursor: pointer;
+  background-color: rgb(199, 51, 75);
+  color: white;
 }

@@ -35,6 +35,8 @@ function WorkWith_Instruments() {
   function handleSubmit(event) {
     try {
       event.preventDefault();
+      //Update context
+      context.setUserObj({ ...context.userObj, workWithRoles: tempArr });
       //Go to next page
       context.setPage((page) => page + 1);
     } catch (err) {

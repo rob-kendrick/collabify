@@ -1,9 +1,8 @@
 import React from 'react';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { formContext } from '../Create_Acc_Parent/ParentForm';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import Axios from 'axios';
+
+import './FormUserProfile.css';
 
 const cloudController = require('../../../services/cloudService');
 
@@ -12,6 +11,7 @@ function FormUserProfile() {
   const [mediaFileInputState, setMediaFileInputState] = useState('');
   const [previewSource, setPreviewSource] = useState();
   const [mediaPreviewSrc, setMediaPreviewSrc] = useState();
+  const [mediaTracker, setMediaTracker] = useState(0);
 
   //Go prev page function
   function goPrevPage() {
@@ -31,12 +31,18 @@ function FormUserProfile() {
       );
     }
   }
+
   //controller function for uploading user media
   async function uploadUsrMedia(imgBase64) {
-    console.log(imgBase64);
+    if (mediaTracker >= 3) {
+      alert('Maximum number of user medias uploaded');
+      return;
+    }
+
     try {
       console.log('UploadusrMedia firing!');
-      setMediaFileInputState('');
+      setMediaFileInputState(''); //THIS DOESNT WORK ?
+      setMediaTracker((mediaTracker) => mediaTracker + 1);
       return await fetch('http://localhost:4000/cloudapi/upload/media', {
         method: 'POST',
         body: JSON.stringify({ imgData: imgBase64 }),
@@ -78,6 +84,11 @@ function FormUserProfile() {
     console.log(mediaFile, 'MEDIA FILE !');
     previewMediaFile(mediaFile);
     setMediaFileInputState(files);
+
+    if (mediaTracker >= 3) {
+      alert('You have uploaded the maximum number of user media pictures.');
+      return;
+    }
   }
 
   //Function for previewing profile pic
@@ -101,18 +112,24 @@ function FormUserProfile() {
   return (
     <div>
       <h3 className="top-text">Now lets make your profile!</h3>
-      <p className="sub-top">Show your skills off to the world !</p>
+      <p className="sub-top">Show yourself off to the world !</p>
       <form className="profile-form" onSubmit={handleSubmit}>
         {' '}
         <h4>Choose One main Profile picture</h4>
         <input
+          className="file-input"
           type="file"
           name="main-prof-pic"
+          id="prof-pic"
           onChange={(e) => {
             handleInputChange(e.target.files);
           }}
         ></input>
+        <label for="prof-pic" className="upload-btn">
+          Choose File
+        </label>
         <button
+          className="file-input"
           type="button"
           className="submit-file-btn"
           onClick={handleFileSubmit}
@@ -120,13 +137,19 @@ function FormUserProfile() {
           Submit file
         </button>
         <h4>Add more user pictures</h4>
+        <p className="tracker">Media files Uploaded : {mediaTracker} / 3</p>
         <input
+          className="file-input"
+          id="media-file"
           type="file"
           name="media-file-1"
           onChange={(e) => {
             handleMediaInput(e.target.files);
           }}
         ></input>
+        <label for="media-file" className="upload-btn">
+          Choose File
+        </label>
         <button
           type="button"
           className="submit-file-btn"
@@ -135,16 +158,22 @@ function FormUserProfile() {
         >
           Submit Media file
         </button>
-        <h4>and write a short bio</h4>
-        <input type="text" name="bio"></input>
+        <h4>Finally, write a short bio :)</h4>
+        <textarea
+          className="bio-input"
+          name="bio"
+          cols="10"
+          rows="10"
+          maxlength="250"
+        ></textarea>
       </form>
 
       {/* PREVIEW YOUR SELECTED FILE */}
       {previewSource && (
         <img
-          src={previewSource}
+          src={mediaPreviewSrc}
           alt="your chosen image"
-          style={{ height: '300px' }}
+          style={{ width: '450px' }}
         />
       )}
 

@@ -46,6 +46,8 @@ function FormBandRoles() {
   function handleSubmit(event) {
     try {
       event.preventDefault();
+      //Updating context
+      context.setUserObj({ ...context.userObj, roles: tempArr });
       //Go to next page
       context.setPage((page) => page + 1);
     } catch (err) {
@@ -78,7 +80,7 @@ function FormBandRoles() {
       {/* <p>{JSON.stringify(tempArr)}</p> */}
       <form className="roles-form">
         <h3 className="top-text">What roles describe you best?</h3>
-        <h4 className="sub-top">Pick the 5 most relevant</h4>
+        <h4 className="sub-top">Pick up to 5 most relevant</h4>
         <div className="roles-container">
           {roles.map((item) => {
             let isSelected = tempArr.includes(item); //returns true if tempArr includes item

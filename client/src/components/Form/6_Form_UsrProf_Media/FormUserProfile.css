@@ -1,0 +1,95 @@
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.file-input {
+  width: 50%;
+  padding: 10px;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 20px;
+  height: 40px;
+}
+
+.upload-btn {
+  width: 40%;
+  text-align: center;
+  border-radius: 20px;
+  padding: 10px 20px;
+  height: auto;
+  border: 1px solid black;
+  background-color: rgb(250, 250, 250);
+  transition: 250ms width ease, 250ms;
+}
+
+.upload-btn:hover {
+  text-align: center;
+  width: 44%;
+  cursor: pointer;
+  background-color: rgba(251, 71, 125, 0.712);
+  color: white;
+}
+
+.submit-file-btn {
+  width: 50%;
+  padding: 10px;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid black;
+  background-color: rgb(250, 250, 250);
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  transition: 250ms width ease, 250ms;
+}
+
+.submit-file-btn:hover {
+  width: 60%;
+  cursor: pointer;
+  background-color: rgb(56, 155, 61);
+  color: white;
+}
+
+.bio-input {
+  height: 150px;
+  width: 100%;
+  border-radius: 9px;
+  border: 1px solid black;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.863);
+  word-break: break-all;
+  word-wrap: break-word !important;
+}
+
+.footer {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.footer-btn {
+  margin: 30px;
+  padding: 10px;
+  margin: 15px auto;
+  width: 40% !important;
+  height: 60px;
+  border-radius: 30px;
+  border: 1px solid black;
+  background-color: rgb(250, 250, 250);
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  transition: 250ms width ease, 250ms;
+}
+
+.footer-btn:hover {
+  width: 45%;
+  cursor: pointer;
+  background-color: rgb(251, 71, 125);
+  color: white;
+}

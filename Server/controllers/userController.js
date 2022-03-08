@@ -1,4 +1,5 @@
-const UserModel = require("../models/UserModel"); //check model folder for schemas used below
+const UserModel = require('../models/UserModel'); //check model folder for schemas used below
+const bcrypt = require('bcrypt');
 
 //getAll func
 async function getAllUsers(req, res) {
@@ -29,37 +30,64 @@ async function getUserById(req, res) {
 
 //the client will send a request(body) which should match the schema we created in UserModel.js
 async function createUser(req, res) {
+  //destructuring the props /vars we need from the client request
+  const {
+    firstName,
+    lastName,
+    bday,
+    email,
+    password,
+    genres,
+    workWithGenres,
+    workWithRoles,
+    //These will be blank. The user will set them later.
+    audios,
+    profilePic,
+    pics,
+    likes,
+    dislikes,
+    matches,
+  } = req.body;
+  //  CHECKING IF USER EXISTS
+  const user = await UserModel.findOne({ email: email });
+  if (user)
+    return res
+      .status(409)
+      .send({ error: '409', message: 'User already exists' });
+  //If user doesnt exist:
   try {
-    //destructuring the props /vars we need from the client request
-    const {
-      email,
-      password,
-      firstName,
-      lastName,
-      age,
-      bio,
-      profPic,
-      roles,
-      genres,
-    } = req.body;
+    if (password === '') throw new Error('Password blank');
+    const hash = await bcrypt.hash(password, 10);
 
     const dbResponse = await UserModel.create({
-      email,
-      password,
-      firstName,
-      lastName,
-      age,
-      bio,
-      profPic,
-      roles,
-      genres,
+      ...req.body,
+      password: hash,
     });
-    res.send(dbResponse);
-    res.status(201); //accepted into DB
+    const user = await dbResponse.save();
+    req.session.uid = user._id;
+    res.status(201).send(user); //accepted into DB
   } catch (e) {
     res.send(e);
     res.status(500);
     console.log(e);
+  }
+}
+
+async function login(req, res) {
+  try {
+    const { email, password } = req.body;
+
+    const user = await UserModel.findOne({ email: email });
+    const validatedPass = await bcrypt.compare(password, user.password);
+    if (validatedPass) {
+      req.session.uid = user._id.toString();
+    }
+    if (!validatedPass) throw new Error();
+    res.status(200).send({ email: user.email, id: user._id.toString() });
+  } catch (err) {
+    res
+      .status(401)
+      .send({ error: '401', message: 'Username or password is incorrect' });
   }
 }
 
@@ -78,4 +106,10 @@ async function deleteUserById(req, res) {
   }
 }
 
-module.exports = { getAllUsers, getUserById, createUser, deleteUserById };
+module.exports = {
+  login,
+  getAllUsers,
+  getUserById,
+  createUser,
+  deleteUserById,
+};

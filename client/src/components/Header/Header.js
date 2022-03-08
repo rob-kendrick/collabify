@@ -5,11 +5,8 @@ import './Header.css';
 //Material UI Icons and Buttons
 import PersonIcon from '@mui/icons-material/Person';
 import ForumIcon from '@mui/icons-material/Forum';
-import { Icon, IconButton } from '@mui/material';
+import { IconButton } from '@mui/material';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
-
-//TODO:
-//  Make the backButtons work
 
 function Header({ backButton }) {
   const navigate = useNavigate();
@@ -20,8 +17,8 @@ function Header({ backButton }) {
         // <Link to="/">
         <IconButton
           onClick={() => {
-            <Navigate to={backButton} />; //this doesnt work atm.
-            //look up useNav. docs
+            console.log('click');
+            navigate(backButton);
           }}
         >
           <ArrowLeftIcon

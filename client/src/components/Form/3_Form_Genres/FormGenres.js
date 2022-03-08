@@ -32,7 +32,7 @@ function FormGenres() {
 
   useEffect(() => {
     console.log('tempArr updated');
-    console.log(tempArr, '<< tempArr BandRoles');
+    console.log(tempArr, '<< tempArr GENRES');
     checkLength(tempArr);
   }, [tempArr]);
 
@@ -57,6 +57,8 @@ function FormGenres() {
   function handleSubmit(event) {
     try {
       event.preventDefault();
+      //Update context
+      context.setUserObj({ ...context.userObj, genres: tempArr });
       //Go to next page
       context.setPage((page) => page + 1);
     } catch (err) {
@@ -68,7 +70,7 @@ function FormGenres() {
     <div className="genres-form-container" onSubmit={handleSubmit}>
       <form className="genres-form">
         <h3 className="top-text">What genres describe you best?</h3>
-        <h4 className="sub-top">Pick the 7 most relevant</h4>
+        <h4 className="sub-top">Pick up to 7 most relevant</h4>
         <div className="genres-container">
           {genres.map((item) => {
             let isSelected = tempArr.includes(item); //returns true if tempArr includes item
