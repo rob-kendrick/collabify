@@ -23,7 +23,7 @@ router.delete('/users/:id', userController.deleteUserById);
 router.post('/login', userController.login);
 
 //Logout user
-router.post('/logout', authMiddleware, userController.logout);
+router.post('/logout', userController.logout);
 
 // CLOUD STUFF
 

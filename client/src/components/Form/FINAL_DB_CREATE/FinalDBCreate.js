@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 //Context
 import { useContext } from 'react';
 import { formContext } from '../Create_Acc_Parent/ParentForm';
@@ -9,7 +10,7 @@ import { createUser } from '../../../services/backEndService';
 
 function FinalDBCreate() {
   const context = useContext(formContext);
-
+  let navigate = useNavigate();
   function createAcc() {
     console.log('creating account...');
     //Body to be posted to backend
@@ -33,6 +34,7 @@ function FinalDBCreate() {
     };
     //Sending body to backend
     createUser(body);
+    navigate('/');
   }
 
   return (

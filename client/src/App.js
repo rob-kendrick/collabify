@@ -85,7 +85,7 @@ function App() {
                 <>
                   <Header />
                   <CardList />
-                  <SwipeButtons />
+                  {/* <SwipeButtons /> */}
                 </>
               }
             />
