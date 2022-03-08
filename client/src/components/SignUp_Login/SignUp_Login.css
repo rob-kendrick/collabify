@@ -5,9 +5,58 @@
 
 .login-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center !important;
+  align-items: center !important;
   flex-direction: column;
+}
+
+.login-form > h3 {
+  display: flex;
+  justify-content: center;
+}
+
+.submit-container {
+  margin: 30px;
+  display: flex;
+  justify-content: center;
+}
+.submit-btn {
+  width: 150px;
+  height: 50px;
+  font-size: 20px;
+  background-color: rgb(233, 233, 233);
+  border: 1px solid black;
+  border-radius: 30px;
+  transition: 250ms width ease, 250ms;
+}
+
+.submit-btn:hover {
+  background-color: green;
+  cursor: pointer;
+  color: white;
+  width: 170px;
+}
+
+.create-btn {
+  width: 170px;
+  height: 50px;
+  font-size: 20px;
+  background-color: rgb(233, 233, 233);
+  border: 1px solid black;
+  border-radius: 30px;
+  transition: 250ms width ease, 250ms;
+}
+
+.create-btn:hover {
+  background-color: rgb(220, 45, 126);
+  cursor: pointer;
+  color: white;
+  width: 190px;
+}
+
+.form-input {
+  margin: 0 auto !important;
+  width: 100%;
 }
 
 .register-container {

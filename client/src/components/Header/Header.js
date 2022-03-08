@@ -7,6 +7,8 @@ import PersonIcon from '@mui/icons-material/Person';
 import ForumIcon from '@mui/icons-material/Forum';
 import { IconButton } from '@mui/material';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+//Logout component => TO BE REPLACED WITH PROFILE COMP
+import Logout from '../Logout/Logout';
 
 function Header({ backButton }) {
   const navigate = useNavigate();
@@ -14,7 +16,6 @@ function Header({ backButton }) {
     <div className="header">
       {/* If backButton is passed as prop, link to homepage */}
       {backButton ? (
-        // <Link to="/">
         <IconButton
           onClick={() => {
             console.log('click');
@@ -27,10 +28,11 @@ function Header({ backButton }) {
           ></ArrowLeftIcon>
         </IconButton>
       ) : (
-        // </Link>
-        <IconButton>
-          <PersonIcon fontSize="large" className="profile-icon" />
-        </IconButton>
+        <Link to="logout">
+          <IconButton>
+            <PersonIcon fontSize="large" className="profile-icon" />
+          </IconButton>
+        </Link>
       )}
       {/* Logo / Text */}
       <h2 className="header__logo-text">FMB</h2>

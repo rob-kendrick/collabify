@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const userController = require('./controllers/userController');
 const cloudController = require('./controllers/cloudController');
+const authMiddleware = require('./middlewares/auth');
 
 const router = Router(); //Starting router
 
@@ -20,6 +21,9 @@ router.delete('/users/:id', userController.deleteUserById);
 
 //Login user
 router.post('/login', userController.login);
+
+//Logout user
+router.post('/logout', authMiddleware, userController.logout);
 
 // CLOUD STUFF
 

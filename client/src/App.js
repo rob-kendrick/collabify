@@ -13,6 +13,7 @@ import SwipeButtons from './components/SwipeButtons/SwipeButtons';
 import { ParentForm } from './components/Form/Create_Acc_Parent/ParentForm';
 import ImageGallery from './components/temp/ImageGallery';
 import SignUp_Login from './components/SignUp_Login/SignUp_Login';
+import Logout from './components/Logout/Logout';
 
 //Creating Context
 export const mainContext = React.createContext(null);
@@ -34,18 +35,27 @@ function App() {
   const [users, setUsers] = useState([]); //will be arr of user objs from DB
   const initialAuthState = auth.isAuthenticated(); //starts at false
   const [isAuthenticated, setIsAuthenticated] = useState(initialAuthState);
+  const [currentUser, setCurrentUser] = useState(null);
   return (
     <div className="App">
       <mainContext.Provider
-        value={{ users, setUsers, isAuthenticated, setIsAuthenticated }}
+        value={{
+          users,
+          setUsers,
+          isAuthenticated,
+          setIsAuthenticated,
+          currentUser,
+          setCurrentUser,
+        }}
       >
         <Router>
           <Routes>
             {/* Temp route for dev testing */}
             {/* <Route path="/gallery" element={<ImageGallery />}></Route> */}
-
             {/* Route for login */}
             <Route path="/login" element={<SignUp_Login />}></Route>
+            {/* Route for Logout */}
+            <Route path="/logout" element={<Logout />}></Route>
             {/* Chat with particular user */}
             <Route
               path="/chat/:person"

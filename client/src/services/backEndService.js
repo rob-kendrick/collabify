@@ -24,6 +24,17 @@ export const loginUser = (usr) => {
     body: JSON.stringify(usr),
   })
     .then((res) => res.json())
-    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
+};
+
+//Logout user
+export const logout = () => {
+  return fetch(`${baseURL}/logout`, {
+    method: 'POST',
+    credentials: 'include',
+    mode: 'cors',
+    headers: { 'Content-Type': 'application/json' },
+  })
+    .then((res) => res.json())
     .catch((err) => console.log(err));
 };

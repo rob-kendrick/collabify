@@ -73,6 +73,7 @@ async function createUser(req, res) {
   }
 }
 
+//Login
 async function login(req, res) {
   try {
     const { email, password } = req.body;
@@ -83,13 +84,29 @@ async function login(req, res) {
       req.session.uid = user._id.toString();
     }
     if (!validatedPass) throw new Error();
-    res.status(200).send({ email: user.email, id: user._id.toString() });
+    res
+      .status(200)
+      .send({ email: user.email, id: user._id.toString(), shouldAuth: true });
   } catch (err) {
     res
       .status(401)
       .send({ error: '401', message: 'Username or password is incorrect' });
   }
 }
+
+//Logout
+const logout = (req, res) => {
+  req.session.destroy((error) => {
+    if (error) {
+      res
+        .status(500)
+        .send({ error, message: 'Could not log out, please try again' });
+    } else {
+      res.clearCookie('sid');
+      res.status(200).send({ message: 'Logout successful' });
+    }
+  });
+};
 
 //delete by Id
 async function deleteUserById(req, res) {
@@ -107,6 +124,7 @@ async function deleteUserById(req, res) {
 }
 
 module.exports = {
+  logout,
   login,
   getAllUsers,
   getUserById,
