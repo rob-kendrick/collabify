@@ -1,6 +1,6 @@
-### FIND MY BAND
+### Collabify
 
-Welcome to FindMyBand. This is a tinder-style app for matching musicians with other musicians for chat and collabration.
+Welcome to Collabify. This is a tinder-style app for matching musicians with other musicians for chat and collabration.
 Essentially, when the user creates their account they specify what instruments they play, what genres they make, what instrumentalists they want to work with, including what genres those instrumentalist play.
 
 The project only has quite basic functionality at the moment, so there is a lot of room for development, which I think could be quite fun.
